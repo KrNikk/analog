@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const analogspaceController = require("../controllers/analogspace.controller");
 
+
 router.post("/", analogspaceController.createAnalogData);
 router.get("/", analogspaceController.getAnalogData);
 router.get("/:id", analogspaceController.getAnalogDataById);

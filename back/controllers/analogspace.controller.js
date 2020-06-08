@@ -3,12 +3,15 @@ const createAnalogService = require("../services/analogspace.services");
 const createAnalogData = async (req, res, next) => {
   try {
     const data = await createAnalogService.createAnalogData({
+      title: req.body.title,
       manufacturer: req.body.manufacturer,
       film: req.body.film,
       asa: req.body.asa,
+      pushPull: req.body.pushPull,
       developer: req.body.developer,
       dilution: req.body.dilution,
       minutes: req.body.minutes,
+      notes: req.body.notes,
     });
     res.status(200).json({ result: data });
   } catch (err) {

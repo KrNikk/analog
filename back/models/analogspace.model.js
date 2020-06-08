@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const analogspaceSchema = new mongoose.Schema({
+  title:{
+    type: String,
+    required: true,
+  },
   manufacturer: {
     type: String,
     required: true,
@@ -10,6 +14,10 @@ const analogspaceSchema = new mongoose.Schema({
     required: true,
   },
   asa: {
+    type: String,
+    required: false,
+  },
+  pushPull: {
     type: String,
     required: false,
   },
@@ -25,6 +33,10 @@ const analogspaceSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  notes: {
+    type: String,
+    required: false,
+  }
 });
 
 const AnalogspaceSchema = mongoose.model(
