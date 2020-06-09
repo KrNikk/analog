@@ -4,6 +4,23 @@ const app = express();
 const cors = require('cors');
 const analogspaceRoutes = require("./routes/analogspace.routes");
 
+app.use(express.json());
+
+/* const allowedOrigins = 'http://localhost:3000/';
+
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin){
+      return callback (null, true);
+    }
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+})); */
+
 
 const connect = () => {
   return mongoose.connect("mongodb://localhost:27017/analogspace", {
@@ -13,8 +30,7 @@ const connect = () => {
 };
 connect();
 
-app.use(express.json());
-app.use(cors());
+
 app.use("/times", analogspaceRoutes);
 
 
