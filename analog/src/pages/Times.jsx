@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import Selection from "../components/Select";
 import Slider from "../components/Slider";
-import Table from "../components/Table";
+import "./Times.scss";
+import Card from "../components/Card";
 import { TimesContext } from "../definitions/Times.context";
 
 const Times = () => {
@@ -17,9 +18,11 @@ const Times = () => {
         <h1>Loading ...</h1>
       ) : (
         <>
-          <Slider />
+        {/*   <Slider /> */}
+        <h2>Add your recipe or browse </h2>
           <Selection />
-          <Table />
+       {/*    <Table /> */}
+         <div className="cardContainer"> <Card /></div>
         </>
       )}
     </>

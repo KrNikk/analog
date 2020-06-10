@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
-import Flip from "react-reveal/Flip";
+import CameraIcon from '@material-ui/icons/Camera';
+import CameraRollIcon from '@material-ui/icons/CameraRoll';
 
 const MenuButton = ({ className, name, to }) => {
   return (
     <>
-      <Flip right>
+      {/* <Flip right> */}
         <Link to={to}>
           <button className={className}>{name}</button>
         </Link>
-      </Flip>
+      {/* </Flip> */}
     </>
   );
 };
@@ -46,4 +47,12 @@ const SendButton = () => {
   );
 };
 
-export { MenuButton, SendButton };
+const NextBackButton = ({onClick, step}) => {
+  return(
+  <div className={"steps"} onClick={onClick}><CameraRollIcon
+   style={{color: "#7d0c21"}} alt="step"/>{(step)===false?"Next step":"Hide step"}
+  </div> 
+  )
+}
+
+export { MenuButton, SendButton, NextBackButton };

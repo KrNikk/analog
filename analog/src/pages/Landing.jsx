@@ -1,39 +1,46 @@
 import React from "react";
 import { MenuButton } from "../components/Button";
 import "./Landing.scss";
+import Cameras from "../images/cameras.jpg";
+import Flip from "react-reveal/Flip";
 
 const Landing = () => {
   return (
-    <>
+    <><div  style={
+      {backgroundImage: `url(${Cameras})`,
+      width:"90%", 
+      minHeight: "45rem",
+      borderRadius: "1rem", 
+      backgroundSize: "100%", 
+      display: "inline-flex",
+      alignContent: "center",
+      justifyContent:"center"
+  }}>
       <div className="container">
-        <div
-          style={{
-            display: "inline-flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
+        <Flip right> 
           <MenuButton
             className={"startButton"}
             name={"Developing process"}
-            to={"/"}
+            to={"/process"}
           ></MenuButton>
+          </Flip>
+          <Flip right delay={600}> 
           <MenuButton
             className={"startButton"}
             name={"Developing times"}
             to={"/times"}
           ></MenuButton>
-          <MenuButton
-            className={"startButton"}
-            name={"Recipes"}
-            to={"/"}
-          ></MenuButton>
+            </Flip>
+            <Flip right delay={1200}> 
+         </Flip>
+         <Flip right delay={1200}>
           <MenuButton
             className={"startButton"}
             name={"Timer"}
-            to={"/"}
+            to={"/timer"}
           ></MenuButton>
-        </div>
+          </Flip>
+      </div>
       </div>
     </>
   );

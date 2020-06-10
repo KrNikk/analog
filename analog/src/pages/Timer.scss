@@ -1,0 +1,72 @@
+.developer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+.stop{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+.fixer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+ 
+}
+
+.default{
+    font-size: xxx-large;
+    margin-left: 1rem;
+}
+
+.td{
+    width: 15rem;
+}
+
+.table{
+    display: inline-block;
+}
+
+.input{
+    text-align: center;
+    font-size: large;
+}
+
+
+
+@media (max-width: 980px) {
+    .developer{
+        display: grid;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    
+    }
+    .stop{
+        display: grid;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    
+    }
+    .fixer{
+        display: grid;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .table{
+        display: grid;
+        justify-content: center;
+    }
+    .default{
+        font-size: xxx-large;
+        margin-bottom: 1rem;
+    }
+}

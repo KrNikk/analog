@@ -1,9 +1,12 @@
 import React, { createContext, useState } from "react";
 
+
 export const TimesContext = createContext();
 
 export const TimesProvider = ({ children }) => {
   const [analog, setAnalog] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [recipesUrl, setRecipesUrl] = useState("https://filmdev.org/api/recipe/5001");
   const [loading, setLoading] = useState(true);
 
   const fetchData = React.useCallback(() => {
@@ -16,10 +19,11 @@ export const TimesProvider = ({ children }) => {
       .then(console.log(analog));
   }, []);
 
+
   const value = {
     analog,
     loading,
-    fetchData,
+    fetchData
   };
 
   return (

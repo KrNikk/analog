@@ -6,6 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import { TimesContext } from "../definitions/Times.context";
 import Button from "@material-ui/core/Button";
+import "./Select.scss";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -19,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     height: 55,
   },
+  notes: {
+    width: "40rem",
+  }
 }));
 
 const manufacturers = ["ILFORD", "KODAK", "FOMA"];
@@ -32,6 +36,7 @@ const films = [
   "SFX 200",
 ];
 const asas = [25, 50, 100, 200, 400, 800, 1600, 3200];
+const pushPull = ["PULL 3EV", "PULL 2EV", "PULL 1EV", "PUSH 1EV", "PUSH 2EV", "PUSH 3EV"];
 const developers = [
   "ILFOTEC DD-X",
   "ILFOTEC LC29",
@@ -65,12 +70,15 @@ const dilutions = [
 
 export default function Selecton() {
   const [state, setState] = React.useState({
+    title: "",
     manufacturer: "",
     film: "",
     asa: "",
+    pushPull: "",
     developer: "",
     dilution: "",
-    minutes: "",
+    minutes: "-",
+    notes: "-",
   });
 
   const [errors, setErrors] = React.useState([]);
@@ -84,22 +92,35 @@ export default function Selecton() {
       },
       method: "post",
       body: JSON.stringify({
+        title: state.title,
         manufacturer: state.manufacturer,
         film: state.film,
         asa: state.asa,
+        pushPull: state.pushPull,
         developer: state.developer,
         dilution: state.dilution,
         minutes: state.minutes,
+        notes: state.notes,
       }),
     })
       .then(console.log(state))
       .then(fetchData)
+      .then(setState({title: "", manufacturer: "", film: "", asa: "", pushPull:"", developer:"", dilution:"", minutes:"-", notes:""}))
       .catch((err) => setErrors(err));
   };
 
   const classes = useStyles();
 
+  const handleChangeTitle = (event) => {
+    event.preventDefault();
+    const title = event.target.name;
+    setState({
+      ...state, [title]: event.target.value,
+    })
+  }
+
   const handleChangeManufacturer = (event) => {
+    event.preventDefault();
     const manufacturer = event.target.name;
     setState({
       ...state,
@@ -108,6 +129,7 @@ export default function Selecton() {
   };
 
   const handleChangeFilm = (event) => {
+    event.preventDefault();
     const film = event.target.name;
     setState({
       ...state,
@@ -116,13 +138,23 @@ export default function Selecton() {
   };
 
   const handleChangeAsa = (event) => {
+    event.preventDefault();
     const asa = event.target.name;
     setState({
       ...state,
       [asa]: event.target.value,
     });
   };
+
+  const handleChangePushPull = (event) => {
+    event.preventDefault();
+    const pushPull = event.target.name;
+    setState({
+      ...state, [pushPull]: event.target.value,
+    })
+  }
   const handleChangeDeveloper = (event) => {
+    event.preventDefault();
     const developer = event.target.name;
     setState({
       ...state,
@@ -131,6 +163,7 @@ export default function Selecton() {
   };
 
   const handleChangeDilution = (event) => {
+    event.preventDefault();
     const dilution = event.target.name;
     setState({
       ...state,
@@ -139,6 +172,7 @@ export default function Selecton() {
   };
 
   const handleChangeMinutes = (event) => {
+    event.preventDefault();
     const minutes = event.target.name;
     setState({
       ...state,
@@ -146,9 +180,19 @@ export default function Selecton() {
     });
   };
 
+  const handelChangeNotes = (event) => {
+    event.preventDefault();
+    const notes = event.target.name;
+    setState({
+      ...state, [notes]: event.target.value,
+    });
+  }
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
+      <FormControl>
+      <TextField id="standard-basic" label="Title" onChange={handleChangeTitle} value={state.title} name="title"  /></FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel htmlFor="outlined-age-native-simple">
             Manufacturer
@@ -193,7 +237,7 @@ export default function Selecton() {
             native
             value={state.asa}
             onChange={handleChangeAsa}
-            label="ASA"
+            label="film ASA"
             inputProps={{
               name: "asa",
               id: "outlined-age-native-simple",
@@ -202,6 +246,24 @@ export default function Selecton() {
             <option aria-label="None" value="" />
             {asas.map((asa) => {
               return <option value={asa}>{asa}</option>;
+            })}
+          </Select>
+        </FormControl>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel htmlFor="outlined-age-native-simple">Push/Pull</InputLabel>
+          <Select
+            native
+            value={state.pushPull}
+            onChange={handleChangePushPull}
+            label="push/pull"
+            inputProps={{
+              name: "pushPull",
+              id: "outlined-age-native-simple",
+            }}
+          >
+            <option aria-label="None" value="" />
+            {pushPull.map((pushPull) => {
+              return <option value={pushPull}>{pushPull}</option>;
             })}
           </Select>
         </FormControl>
@@ -249,7 +311,7 @@ export default function Selecton() {
             id="outlined-number"
             name="minutes"
             value={state.minutes}
-            label="Number"
+            label="Developing time (minutes)"
             type="number"
             InputLabelProps={{
               shrink: true,
@@ -257,6 +319,21 @@ export default function Selecton() {
             variant="outlined"
             onChange={handleChangeMinutes}
           />
+        </FormControl>
+        <FormControl>
+            <TextField
+          id="outlined-multiline-static"
+          className={classes.notes}
+          label="Notes"
+          name="notes"
+          multiline
+          rows={6}
+          placeholder="write your notes here ..."
+          defaultValue=""
+          variant="outlined"
+          onChange={handelChangeNotes}
+          value={state.notes}
+        />
         </FormControl>
         <Button
           variant="contained"
