@@ -15,7 +15,7 @@ const analogspaceSchema = new mongoose.Schema({
   },
   asa: {
     type: String,
-    required: false,
+    required: true,
   },
   pushPull: {
     type: String,

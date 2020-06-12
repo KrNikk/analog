@@ -6,8 +6,9 @@ export const TimesContext = createContext();
 export const TimesProvider = ({ children }) => {
   const [analog, setAnalog] = useState([]);
   const [recipes, setRecipes] = useState([]);
-  const [recipesUrl, setRecipesUrl] = useState("https://filmdev.org/api/recipe/5001");
   const [loading, setLoading] = useState(true);
+  const [contextCounter, setContextCounter] = useState();
+  const [counterValue, setCounterValue] = useState("");
 
   const fetchData = React.useCallback(() => {
     fetch("/times")
@@ -22,6 +23,8 @@ export const TimesProvider = ({ children }) => {
 
   const value = {
     analog,
+    contextCounter, setContextCounter,
+    counterValue, setCounterValue,
     loading,
     fetchData
   };

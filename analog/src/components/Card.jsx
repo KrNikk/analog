@@ -22,13 +22,16 @@ const useStyles = makeStyles({
   root: {
     width: "22rem",
     height: "auto",
-    margin: "1rem",
+    margin: "3rem 2rem 2rem 2rem",
     textAlign: "left",
-    fontFamily: 'Abel'
+    fontFamily: 'Abel', 
+    boxShadow: "8px 12px 13px -6px rgba(0,0,0,0.75)",
+    backgroundColor: "#E8E9EB"
   },
   title: {
     fontSize: 14,
-    fontFamily: 'Abel'
+    fontFamily: 'Abel', 
+    color: "black"
   },
   pos: {
     marginBottom: 12,
@@ -54,7 +57,10 @@ const useStyles = makeStyles({
     fontFamily: 'Abel'
   },
   typography:{
-    fontSize: "2rem"
+    fontSize: "2rem",
+    backgroundColor: "#D8D9DB",
+    fontFamily: 'Abel', 
+    textAlign: "center"
   }
 });
 

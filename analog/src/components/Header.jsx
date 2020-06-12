@@ -8,7 +8,7 @@ const Header = () => {
         <img src={logo} alt="analog-space-logo" />
       </a>
     </div>
-  );
+  ); 
 };
 
 export default Header;

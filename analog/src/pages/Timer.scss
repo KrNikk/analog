@@ -25,17 +25,47 @@
     margin-left: 1rem;
 }
 
+.tr{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
 .td{
     width: 15rem;
 }
 
 .table{
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
 .input{
     text-align: center;
     font-size: large;
+}
+
+.remember{
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-bottom: 3rem;
+}
+
+.rememberh5{
+    margin-bottom: 0rem;
+    width: 50%
+}
+
+.hr{
+    opacity: 30%;
+    width: 100%;
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    visibility: hidden;
 }
 
 
@@ -62,11 +92,18 @@
         align-items: center;
     }
     .table{
-        display: grid;
+        display: flex;
+        flex-wrap: wrap;
         justify-content: center;
     }
     .default{
         font-size: xxx-large;
         margin-bottom: 1rem;
+    }
+    .hr{
+        opacity: 30%;
+        width: 100%;
+        margin: 1rem 0rem 1rem 0rem;
+        visibility: visible;
     }
 }
