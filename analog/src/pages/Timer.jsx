@@ -11,9 +11,9 @@ import Progress from '../components/Progress';
 
 const TimerPage = () => {
 
-  const [devSec, setDevSec] = React.useState();
-  const [stopBathSec, setStopBathSec] = React.useState();
-  const [fixerBathSec, setFixerBathSec] = React.useState();
+  const [devSec, setDevSec] = React.useState(1);
+  const [stopBathSec, setStopBathSec] = React.useState(1);
+  const [fixerBathSec, setFixerBathSec] = React.useState(1);
   const {contextCounter, setContextCounter, counterValue, setCounterValue} = React.useContext(TimesContext);
 
   const useStyles = makeStyles((theme) => ({
@@ -73,7 +73,7 @@ const TimerPage = () => {
                 name="seconds"
                 label="Developer bath time (seconds)"
                 type="number"
-                InputProps={{inputProps:{min:0, className:"input"}}}
+                InputProps={{inputProps:{min:1, className:"input", defaultValue:1}}}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -100,7 +100,7 @@ const TimerPage = () => {
                   name="seconds"
                   label="Stop bath time (seconds)"
                   type="number"
-                  InputProps={{inputProps:{min:0, className:"input"}}}
+                  InputProps={{inputProps:{min:1, className:"input", defaultValue:1}}}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -129,7 +129,7 @@ const TimerPage = () => {
                   name="seconds"
                   label="Fixer bath time (seconds)"
                   type="number"
-                  InputProps={{inputProps:{min:0, className:"input"}}}
+                  InputProps={{inputProps:{min:1, className:"input", defaultValue:1}}}
                   InputLabelProps={{
                     shrink: true,
                   }}

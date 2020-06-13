@@ -192,13 +192,14 @@ export default function Selecton() {
     <>
       <form className="form" onSubmit={handleSubmit}>
       <FormControl>
-      <TextField id="standard-basic" label="Title" onChange={handleChangeTitle} value={state.title} name="title"  /></FormControl>
+      <TextField required id="standard-basic" label="Title" onChange={handleChangeTitle} value={state.title} name="title"  /></FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel htmlFor="outlined-age-native-simple">
             Manufacturer
           </InputLabel>
           <Select
             native
+            required
             value={state.manufacturer}
             onChange={handleChangeManufacturer}
             label="Manufacturer"
@@ -217,6 +218,7 @@ export default function Selecton() {
           <InputLabel htmlFor="outlined-age-native-simple">Film</InputLabel>
           <Select
             native
+            required
             value={state.film}
             onChange={handleChangeFilm}
             label="Film"
@@ -235,6 +237,7 @@ export default function Selecton() {
           <InputLabel htmlFor="outlined-age-native-simple">ASA</InputLabel>
           <Select
             native
+            required
             value={state.asa}
             onChange={handleChangeAsa}
             label="film ASA"
