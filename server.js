@@ -3,27 +3,12 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require('cors');
 const analogspaceRoutes = require("./routes/analogspace.routes");
+const path = require('path');
 
 app.use(express.json());
 
-/* const allowedOrigins = 'http://localhost:3000/';
-
-app.use(cors({
-  origin: function(origin, callback){
-    if(!origin){
-      return callback (null, true);
-    }
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  }
-})); */
-
-
 const connect = () => {
-  return mongoose.connect("mongodb://localhost:27017/analogspace", {
+  return mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/analogspace", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -33,5 +18,12 @@ connect();
 
 app.use("/times", analogspaceRoutes);
 
+if(process.env.NODE_EVN === "production") {
+  app.use(express.static('analog/build'));
 
-app.listen(5000, () => console.log("app is running on port 5000"));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'analog', 'build', 'index.html'));
+  })
+}
+
+app.listen(process.env.PORT || 5000, () => console.log("app is running on port 5000"));
