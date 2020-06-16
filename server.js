@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const analogspaceRoutes = require("./routes/analogspace.routes");
 const path = require('path');
+require('dotenv').config();
 
 app.use(express.json());
 
