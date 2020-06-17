@@ -6,6 +6,7 @@ const analogspaceRoutes = require("./routes/analogspace.routes");
 const path = require('path');
 require('dotenv').config();
 
+app.use(express.static(path.join(__dirname, "analog", "build")));
 app.use(express.json());
 
 const connect = () => {
@@ -19,12 +20,9 @@ connect();
 
 app.use("/times", analogspaceRoutes);
 
-if(process.env.NODE_EVN === "production") {
-  app.use(express.static('analog/build'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "analog", "build", "index.html"));
+});
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'analog', 'build', 'index.html'));
-  })
-}
-
-app.listen(process.env.PORT || 5000, () => console.log("app is running on port 5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log("app is running on port 5000"));
