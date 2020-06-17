@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, "analog", "build")));
 app.use(express.json());
 
 const connect = () => {
-  return mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/analogspace", {
+  return mongoose.connect(  process.env.MONGODB_URI  ||  "mongodb://localhost:27017/analogspace", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
